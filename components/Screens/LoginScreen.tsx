@@ -21,12 +21,15 @@ function LoginScreen() {
       <StyledTextInputs placeholder='Password' />
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress={() => {
+        
         Alert.alert(
           'Mensaje',
           'Has intentado iniciar sesión',
           [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
           { cancelable: false }
+          
         );
+        navigation.navigate('Home' as never);
       }} />
       <NormalText>Don't have an account?</NormalText>
       <TouchableOpacity onPress={() => navigation.navigate('Register' as never)}>
@@ -39,40 +42,3 @@ function LoginScreen() {
 
 export default LoginScreen;
 
-
-
-
-
-
-/*export default function LoginScreen() {
-  
-    return (
-        <MainContainer>
-        <Title>Hello</Title>
-        <SubTitle>Sign In in your account</SubTitle>
-        <StyledTextInputs placeholder='Email'></StyledTextInputs>
-        <StyledTextInputs placeholder='Password'></StyledTextInputs>
-        <NormalText>Forgot your password?</NormalText>
-        <ButtonGradient onPress={() => {
-                Alert.alert(
-                'Mensaje',
-                'Has intentado iniciar sesión',
-                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-                { cancelable: false }
-                );
-            }} />
-        <NormalText>Don't have an account?</NormalText>
-        <TouchableOpacity onPress={() => {
-            Alert.alert(
-                'Mensaje',
-                'Has intentado registrarte',
-                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-                { cancelable: false }
-            );
-        }}>
-            <Register>Register!</Register>
-        </TouchableOpacity>
-        <StatusBar style="auto" /> 
-        </MainContainer>
-    );
-}*/

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MainContainer from './components/Containers/MainContainer';
+import HomeScreen from './components/Screens/HomeScreen';
 import LoginScreen from './components/Screens/LoginScreen';
 import RegisterScreen from './components/Screens/RegisterScreen';
 // import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
@@ -25,42 +26,11 @@ function App(){
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name='Register' component={RegisterScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/*export default function App() {
-  let page = 'login';
-
-
-
-  return (
-    <>
-   
-       { <LoginScreen></LoginScreen> }
-      
-      
-      <RegisterScreen></RegisterScreen>
-      
-     
-    </>
-  );
-}*/}
