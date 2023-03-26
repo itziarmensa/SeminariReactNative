@@ -1,36 +1,59 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
 import ButtonGradient from '../Buttons/ButtonGradient';
 import MainContainer from '../Containers/MainContainer';
 import SubTitle from '../Texts/Subtitle';
 import Title from '../Texts/Title';
-import StyledTextInputs from '../Inputs/StyledTextInputs';
 import NormalText from '../Texts/NormalText';
 import Register from '../Texts/Register';
 import { useNavigation } from '@react-navigation/native';
 
 function LoginScreen() {
+  
   const navigation = useNavigation();
 
+  const [inputEmail, setInputEmail] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+
   return (
-    <MainContainer>
+      <MainContainer>
       <Title>Hello</Title>
       <SubTitle>Sign In in your account</SubTitle>
-      <StyledTextInputs placeholder='Email' />
-      <StyledTextInputs placeholder='Password' />
+      <TextInput 
+        placeholder = 'Email'
+        style = {styles.TextInput}
+        value = {inputEmail}
+        onChangeText = {setInputEmail}
+        />         
+      <TextInput 
+        placeholder = 'Password' 
+        style = {styles.TextInput} 
+        value = {inputPassword} 
+        onChangeText = {setInputPassword}
+        />   
       <NormalText>Forgot your password?</NormalText>
-      <ButtonGradient onPress={() => {
-        
-        Alert.alert(
-          'Mensaje',
-          'Has intentado iniciar sesión',
-          [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-          { cancelable: false }
-          
-        );
-        navigation.navigate('Home' as never);
-      }} />
+      <ButtonGradient onPress = {() => {
+        fetch(('http://192.168.1.82:2000/user/' + inputEmail + '/' + inputPassword), {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        }).then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            navigation.navigate('Home' as never);
+          })
+          .catch ((error) => {
+              Alert.alert(
+                'Mensaje',
+                'Has intentado iniciar sesión',
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: false }
+            );
+          });
+        }}/>
       <NormalText>Don't have an account?</NormalText>
       <TouchableOpacity onPress={() => navigation.navigate('Register' as never)}>
         <Register>Register!</Register>
@@ -39,6 +62,20 @@ function LoginScreen() {
     </MainContainer>
   )
 }
+
+const styles = StyleSheet.create({
+  TextInput:{
+    borderWidth: 2,
+    borderColor: 'gray',
+    padding: 10,
+    paddingStart: 30,
+    width: '80%',
+    height: 50,
+    marginTop: 20,
+    borderRadius: 30,
+    backgroundColor: '#fff'
+  },
+});
 
 export default LoginScreen;
 

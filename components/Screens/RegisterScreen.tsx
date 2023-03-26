@@ -1,12 +1,10 @@
-import { StatusBar } from 'expo-status-bar'; //esto es lo que tenemos arriba del móvil, la hora la carga etc 
+import { StatusBar } from 'expo-status-bar'; //Esto es lo que tenemos arriba del móvil, la hora la carga, etc. 
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
 import ButtonGradientRegister from '../Buttons/ButtonGradientRegister';
 import MainContainer from '../Containers/MainContainer';
 import SubTitle from '../Texts/Subtitle';
 import Title from '../Texts/Title';
-import StyledTextInputs from '../Inputs/StyledTextInputs';
-import NormalText from '../Texts/NormalText';
 
 export default function RegisterScreen() {
   
@@ -14,7 +12,6 @@ export default function RegisterScreen() {
   const [inputCountry, setInputCountry] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-
 
   return (
     <MainContainer>
@@ -48,7 +45,6 @@ export default function RegisterScreen() {
   
     <ButtonGradientRegister onPress={() => {
             
-
             fetch('http://192.168.1.47:3002/user', {
               method: 'POST',
               headers: {
@@ -63,7 +59,6 @@ export default function RegisterScreen() {
                 }),
             }).then((response) => response.json())
               .then((data) => {               
-              // Aquí se maneja la respuesta de la API
                 console.log(data);
                 Alert.alert(
                   'Mensaje',
@@ -78,7 +73,6 @@ export default function RegisterScreen() {
                     [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                     { cancelable: false }
                     );
-               // Aquí se maneja el error de la API
                 console.error(error);
             });
           }} />
@@ -99,7 +93,6 @@ export default function RegisterScreen() {
   );
 }
 
-
 const styles = StyleSheet.create({
   TextInput:{
     borderWidth: 2,
@@ -111,7 +104,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 30,
     backgroundColor: '#fff'
-
   },
 });
 
