@@ -34,7 +34,7 @@ function LoginScreen() {
         />   
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
-        fetch(('http://192.168.1.82:2000/user/' + inputEmail + '/' + inputPassword), {
+        fetch(('http://yourIP:yourPORT/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
