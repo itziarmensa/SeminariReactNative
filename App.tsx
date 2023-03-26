@@ -1,34 +1,17 @@
-import { StatusBar } from 'expo-status-bar'; //esto es lo que tenemos arriba del móvil, la hora la carga etc 
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
-import ButtonGradient from './components/Buttons/ButtonGradient';
+import { StyleSheet, Text, View } from 'react-native';
 import MainContainer from './components/Containers/MainContainer';
-import SubTitle from './components/Texts/Subtitle';
-import Title from './components/Texts/Title';
-import StyledTextInputs from './components/Inputs/StyledTextInputs';
-import NormalText from './components/Texts/NormalText';
+import LoginScreen from './components/Screens/LoginScreen';
+import RegisterScreen from './components/Screens/RegisterScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-
-  const handlePress = () => {
-    Alert.alert(
-      'Mensaje',
-      'Has intentado iniciar sesión',
-      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-      { cancelable: false }
-    );
-  };
-  
   return (
-    <MainContainer>
-      <Title>Hello</Title>
-      <SubTitle>Sign In in your account</SubTitle>
-      <StyledTextInputs placeholder='Email'></StyledTextInputs>
-      <StyledTextInputs placeholder='Password'></StyledTextInputs>
-      <NormalText>Forgot your password?</NormalText>
-      <ButtonGradient onPress={handlePress} />
-      <NormalText>Don't have an account?</NormalText>
-      <StatusBar style="auto" /> 
-    </MainContainer>
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Home" component={RegisterScreen} />
+    </Stack.Navigator>
   );
 }
