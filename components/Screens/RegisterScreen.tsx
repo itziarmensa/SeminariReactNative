@@ -51,7 +51,7 @@ export default function RegisterScreen() {
           />
   
     <ButtonGradientRegister onPress={() => {            
-            fetch('http://192.168.1.47:3002/user', {
+            fetch('http://iplocal:puerto/user', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',

@@ -35,7 +35,7 @@ function LoginScreen() {
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
         // navigation.navigate('Home' as never);
-        fetch(('http://192.168.1.47:3002/user/' + inputEmail + '/' + inputPassword), {
+        fetch(('http://iplocal:puerto/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
