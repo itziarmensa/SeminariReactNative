@@ -1,5 +1,5 @@
 <h1 align="center"> REACT NATIVE </h1> 
-<h4 align="center"> React Native Server: https://github.com/Bunker14/SeminariReactNative-Server (version of the REST API of seminar 7) </h4> <br>
+<h4 align="center"> React Native Server: https://github.com/Bunker14/SeminariReactNative-Server (REST API of seminar 7) </h4> <br>
 
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="200">
