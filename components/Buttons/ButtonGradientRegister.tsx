@@ -12,7 +12,7 @@ const ButtonGradientRegister = ({ onPress, containerStyle, buttonStyle, textStyl
         end={{ x: 0, y: 1 }}
         style={[styles.button, buttonStyle]}
       >
-        <Text style={[styles.text, textStyle]}>REGISTER</Text>
+        <Text style={[styles.text, textStyle]}>SIGN UP</Text>
       </LinearGradient>
     </TouchableOpacity>
   );

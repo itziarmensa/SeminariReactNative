@@ -26,10 +26,9 @@ function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name='Login' component={LoginScreen} />
-      <Stack.Screen name="Home" component={test2HomeScreen}/>
-        <Stack.Screen name='Register' component={RegisterScreen} />
-        
+      <Stack.Screen name='Login' options={{headerShown: false}} component={LoginScreen} />
+      <Stack.Screen name='Register' options={{headerShown: false}} component={RegisterScreen} />
+      <Stack.Screen name="Home" options={{title: 'Return'}} component={test2HomeScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

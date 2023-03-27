@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
 import ButtonGradient from '../Buttons/ButtonGradient';
 import MainContainer from '../Containers/MainContainer';
 import SubTitle from '../Texts/Subtitle';
@@ -18,8 +18,8 @@ function LoginScreen() {
 
   return (
       <MainContainer>
-      <Title>Hello</Title>
-      <SubTitle>Sign In in your account</SubTitle>
+      <Title>Hello!</Title>
+      <SubTitle>Sign in with your account</SubTitle>
       <TextInput 
         placeholder = 'Email'
         style = {styles.TextInput}
@@ -31,11 +31,11 @@ function LoginScreen() {
         style = {styles.TextInput} 
         value = {inputPassword} 
         onChangeText = {setInputPassword}
+        secureTextEntry={true}
         />   
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
-        // navigation.navigate('Home' as never);
-        fetch(('http://iplocal:puerto/user/' + inputEmail + '/' + inputPassword), {
+        fetch(('http://192.168.1.82:3002/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -45,38 +45,35 @@ function LoginScreen() {
           .then((data) => {
             if (data.error === "ERROR_GET_USER"){
               Alert.alert(
-                'Mensaje',
-                'Error al iniciar sesion',
+                'ALERT!',
+                'Error logging in...',
                 [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                 { cancelable: false }
                 );
             }else{
-              console.log("no he pillao el error bien")
-              Alert.alert(
-              'Mensaje',
-              'Te has logeado con exito',
-              [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-              { cancelable: false }
+              ToastAndroid.showWithGravityAndOffset(
+                'Successful login',
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+                25,
+                50,
               );
             navigation.navigate('Home' as never);
             };
-            // console.log(data);
-            // navigation.navigate('Home' as never);
           })
           .catch ((error) => {
             console.log(error);
               Alert.alert(
-                'Mensaje',
-                'Error al iniciar sesion',
+                'ALERT!',
+                'Error logging in...',
                 [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                 { cancelable: false }
-              
             );
           });
         }}/>
       <NormalText>Don't have an account?</NormalText>
       <TouchableOpacity onPress={() => navigation.navigate('Register' as never)}>
-        <Register>Register!</Register>
+        <Register>Sign Up!</Register>
       </TouchableOpacity>
       <StatusBar style="auto" /> 
     </MainContainer>

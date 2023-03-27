@@ -5,8 +5,9 @@ import { TextProps } from './types';
 
 const styles = StyleSheet.create({
     subtitle: {
-        fontSize: 30,
+        fontSize: 18,
         color: 'gray',
+        fontWeight: 'bold',
     },
 });
 

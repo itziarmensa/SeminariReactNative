@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar'; //Esto es lo que tenemos arriba del móvil, la hora la carga, etc. 
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
 import ButtonGradientRegister from '../Buttons/ButtonGradientRegister';
 import MainContainer from '../Containers/MainContainer';
 import SubTitle from '../Texts/Subtitle';
 import Title from '../Texts/Title';
 import { useNavigation } from '@react-navigation/native';
+import Register from '../Texts/Register';
+import NormalText from '../Texts/NormalText';
 
 export default function RegisterScreen() {
   
@@ -18,12 +20,9 @@ export default function RegisterScreen() {
 
   const data = { error: "ERROR_POST_USER" };
 
-
-
   return (
     <MainContainer>
-    <Title>Register</Title>
-    <SubTitle>Register to have a new account</SubTitle>
+    <SubTitle>Sign up to have a new account</SubTitle>
     <TextInput
           placeholder='Name'
           style={styles.TextInput}
@@ -37,7 +36,7 @@ export default function RegisterScreen() {
           onChangeText={setInputSurname}         
           />
     <TextInput
-          placeholder='Mail'
+          placeholder='Email'
           style={styles.TextInput}
           value={inputEmail}
           onChangeText={setInputEmail}
@@ -49,9 +48,8 @@ export default function RegisterScreen() {
           onChangeText={setInputPassword}
           secureTextEntry={true}
           />
-  
     <ButtonGradientRegister onPress={() => {            
-            fetch('http://iplocal:puerto/user', {
+            fetch('http://192.168.1.82:3002/user', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
@@ -68,46 +66,38 @@ export default function RegisterScreen() {
                 console.log(data);
                 if (data.error === "ERROR_POST_USER"){
                   Alert.alert(
-                    'Mensaje',
-                    'Error al registrarte',
+                    'ALERT!',
+                    'Error registering the account...',
                     [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                     { cancelable: false }
                     );
                 }else{
-                  console.log("no he pillao el error bien")
-                  Alert.alert(
-                  'Mensaje',
-                  'Te has regsitrado con exito',
-                  [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-                  { cancelable: false }
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Successful account registration',
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50,
                   );
                 navigation.navigate('Login' as never);
                 };                                 
                 
               }).catch((error) => {
                   Alert.alert(
-                    'Mensaje',
-                    'Error al registrarte',
+                    'ALERT!',
+                    'Error registering the account...',
                     [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                     { cancelable: false }
                     );
                 console.error(error);
             });
           }} />
-
-    <TouchableOpacity onPress={() => {
-        Alert.alert(
-            'Mensaje',
-            'Has intentado registrarte',
-            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-            { cancelable: false }
-        );
-    }}>
-       
-    </TouchableOpacity>
+      <NormalText>Do you have an account?</NormalText>
+      <TouchableOpacity onPress={() => navigation.navigate('Login' as never)}>
+        <Register>Log In!</Register>
+      </TouchableOpacity>
     <StatusBar style="auto" /> 
     </MainContainer>
-
   );
 }
 
