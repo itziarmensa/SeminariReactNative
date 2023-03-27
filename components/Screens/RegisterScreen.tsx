@@ -5,20 +5,39 @@ import ButtonGradientRegister from '../Buttons/ButtonGradientRegister';
 import MainContainer from '../Containers/MainContainer';
 import SubTitle from '../Texts/Subtitle';
 import Title from '../Texts/Title';
+import { useNavigation } from '@react-navigation/native';
 
 export default function RegisterScreen() {
   
-  const [inputPhone, setInputPhone] = useState('');
-  const [inputCountry, setInputCountry] = useState('');
+  const [inputName, setInputName] = useState('');
+  const [inputSurname, setInputSurname] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
+
+  const navigation = useNavigation();
+
+  const data = { error: "ERROR_POST_USER" };
+
+
 
   return (
     <MainContainer>
     <Title>Register</Title>
     <SubTitle>Register to have a new account</SubTitle>
     <TextInput
-          placeholder='Email'
+          placeholder='Name'
+          style={styles.TextInput}
+          value={inputName}
+          onChangeText={setInputName}
+          />
+    <TextInput
+          placeholder='Surname'
+          style={styles.TextInput}
+          value={inputSurname}
+          onChangeText={setInputSurname}         
+          />
+    <TextInput
+          placeholder='Mail'
           style={styles.TextInput}
           value={inputEmail}
           onChangeText={setInputEmail}
@@ -30,42 +49,41 @@ export default function RegisterScreen() {
           onChangeText={setInputPassword}
           secureTextEntry={true}
           />
-    <TextInput
-          placeholder='Phone'
-          style={styles.TextInput}
-          value={inputPhone}
-          onChangeText={setInputPhone}
-          />
-    <TextInput
-          placeholder='Country'
-          style={styles.TextInput}
-          value={inputCountry}
-          onChangeText={setInputCountry}
-          />
   
-    <ButtonGradientRegister onPress={() => {
-            
-            fetch('http://yourIP:yourPORT/user/insert', {
+    <ButtonGradientRegister onPress={() => {            
+            fetch('http://192.168.1.47:3002/user', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
               },
                 body: JSON.stringify({
+                  name: inputName,
+                  surname: inputSurname,
                   email: inputEmail,
-                  password: inputPassword,
-                  phone: inputPhone,
-                  country:inputCountry,
+                  password:inputPassword,
                 }),
             }).then((response) => response.json())
               .then((data) => {               
                 console.log(data);
-                Alert.alert(
+                if (data.error === "ERROR_POST_USER"){
+                  Alert.alert(
+                    'Mensaje',
+                    'Error al registrarte',
+                    [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                    { cancelable: false }
+                    );
+                }else{
+                  console.log("no he pillao el error bien")
+                  Alert.alert(
                   'Mensaje',
                   'Te has regsitrado con exito',
                   [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                   { cancelable: false }
                   );
+                navigation.navigate('Login' as never);
+                };                                 
+                
               }).catch((error) => {
                   Alert.alert(
                     'Mensaje',
