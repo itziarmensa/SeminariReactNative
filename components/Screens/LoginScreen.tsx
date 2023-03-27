@@ -34,8 +34,8 @@ function LoginScreen() {
         />   
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
-        navigation.navigate('Home' as never);
-        fetch(('http://yourIP:yourPORT/user/' + inputEmail + '/' + inputPassword), {
+        // navigation.navigate('Home' as never);
+        fetch(('http://192.168.1.47:3002/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -43,15 +43,34 @@ function LoginScreen() {
             },
         }).then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            //navigation.navigate('Home' as never);
-          })
-          .catch ((error) => {
+            if (data.error === "ERROR_GET_USER"){
               Alert.alert(
                 'Mensaje',
-                'Has intentado iniciar sesión',
+                'Error al iniciar sesion',
                 [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                 { cancelable: false }
+                );
+            }else{
+              console.log("no he pillao el error bien")
+              Alert.alert(
+              'Mensaje',
+              'Te has logeado con exito',
+              [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+              { cancelable: false }
+              );
+            navigation.navigate('Home' as never);
+            };
+            // console.log(data);
+            // navigation.navigate('Home' as never);
+          })
+          .catch ((error) => {
+            console.log(error);
+              Alert.alert(
+                'Mensaje',
+                'Error al iniciar sesion',
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: false }
+              
             );
           });
         }}/>
