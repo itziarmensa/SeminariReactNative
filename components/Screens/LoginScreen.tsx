@@ -34,6 +34,7 @@ function LoginScreen() {
         />   
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
+        navigation.navigate('Home' as never);
         fetch(('http://yourIP:yourPORT/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
@@ -43,7 +44,7 @@ function LoginScreen() {
         }).then((response) => response.json())
           .then((data) => {
             console.log(data);
-            navigation.navigate('Home' as never);
+            //navigation.navigate('Home' as never);
           })
           .catch ((error) => {
               Alert.alert(
