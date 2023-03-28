@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   button: {
+    marginTop: -40,
     height: 50,
     borderRadius: 25,
     padding: 10,
