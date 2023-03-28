@@ -7,7 +7,7 @@ import MainContainer from './components/Containers/MainContainer';
 import HomeScreen from './components/Screens/HomeScreen';
 import LoginScreen from './components/Screens/LoginScreen';
 import RegisterScreen from './components/Screens/RegisterScreen';
-import test2HomeScreen from './components/Screens/test2HomeScreen';
+import test2HomeScreen from './components/Screens/HomeScreen';
 // import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 
 const Stack=createStackNavigator();
@@ -28,7 +28,7 @@ function App(){
       <Stack.Navigator>
       <Stack.Screen name='Login' options={{headerShown: false}} component={LoginScreen} />
       <Stack.Screen name='Register' options={{headerShown: false}} component={RegisterScreen} />
-      <Stack.Screen name="Home" options={{title: 'Return'}} component={test2HomeScreen}/>
+      <Stack.Screen name="Home" options={{title: 'Return'}} component={HomeScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
