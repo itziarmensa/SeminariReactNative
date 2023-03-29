@@ -8,6 +8,7 @@ import Title from '../Texts/Title';
 import { useNavigation } from '@react-navigation/native';
 import Register from '../Texts/Register';
 import NormalText from '../Texts/NormalText';
+import StyledTextInputs from '../Inputs/StyledTextInputs';
 
 export default function RegisterScreen() {
   
@@ -23,33 +24,29 @@ export default function RegisterScreen() {
   return (
     <MainContainer>
     <SubTitle>Sign up to have a new account</SubTitle>
-    <TextInput
+    <StyledTextInputs
           placeholder='Name'
-          style={styles.TextInput}
           value={inputName}
           onChangeText={setInputName}
           />
-    <TextInput
+    <StyledTextInputs
           placeholder='Surname'
-          style={styles.TextInput}
           value={inputSurname}
           onChangeText={setInputSurname}         
           />
-    <TextInput
+    <StyledTextInputs
           placeholder='Email'
-          style={styles.TextInput}
           value={inputEmail}
           onChangeText={setInputEmail}
           />
-    <TextInput
+    <StyledTextInputs
           placeholder='Password'
-          style={styles.TextInput}
           value={inputPassword}
           onChangeText={setInputPassword}
           secureTextEntry={true}
           />
     <ButtonGradientRegister onPress={() => {            
-            fetch('http://192.168.1.47:3002/user', {
+            fetch('http://192.168.15.253:3002/user', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
@@ -101,17 +98,4 @@ export default function RegisterScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  TextInput:{
-    borderWidth: 2,
-    borderColor: 'gray',
-    padding: 10,
-    paddingStart: 30,
-    width: '80%',
-    height: 50,
-    marginTop: 20,
-    borderRadius: 30,
-    backgroundColor: '#fff'
-  },
-});
 

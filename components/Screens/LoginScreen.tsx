@@ -9,6 +9,7 @@ import NormalText from '../Texts/NormalText';
 import Register from '../Texts/Register';
 import { useNavigation } from '@react-navigation/native';
 import Svg, {SvgProps, Path, G, Defs, Pattern, Use, Image,} from "react-native-svg"
+import StyledTextInputs from '../Inputs/StyledTextInputs';
 
 function LoginScreen() {
   
@@ -53,22 +54,20 @@ function LoginScreen() {
       <SvgTop/>
       <Title>Hello!</Title>
       <SubTitle>Sign in with your account</SubTitle>
-      <TextInput 
+      <StyledTextInputs 
         placeholder = 'Email'
-        style = {styles.TextInput}
         value = {inputEmail}
         onChangeText = {setInputEmail}
         />         
-      <TextInput 
+      <StyledTextInputs 
         placeholder = 'Password' 
-        style = {styles.TextInput} 
         value = {inputPassword} 
         onChangeText = {setInputPassword}
         secureTextEntry={true}
         />   
       <NormalText>Forgot your password?</NormalText>
       <ButtonGradient onPress = {() => {
-        fetch(('http://192.168.1.47:3002/user/' + inputEmail + '/' + inputPassword), {
+        fetch(('http://192.168.15.253:3002/user/' + inputEmail + '/' + inputPassword), {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -112,20 +111,6 @@ function LoginScreen() {
     </MainContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  TextInput:{
-    borderWidth: 2,
-    borderColor: 'gray',
-    padding: 10,
-    paddingStart: 30,
-    width: '80%',
-    height: 50,
-    marginTop: 20,
-    borderRadius: 30,
-    backgroundColor: '#fff'
-  },
-});
 
 export default LoginScreen;
 
