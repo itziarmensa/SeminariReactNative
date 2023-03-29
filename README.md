@@ -1,8 +1,8 @@
-<h1 align="center"> REACT NATIVE </h1> 
+<h1 align="center"> SEMINAR 9: REACT NATIVE </h1> 
 <p align="center"> React Native Server: https://github.com/Bunker14/SeminariReactNative-Server (REST API of seminar 7) </p> <br>
 
 <p align="center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="200">
+    <img src="https://user-images.githubusercontent.com/50048787/228508119-3a79aea6-2631-43df-a3d9-d87c97b7c52b.png" width="200">
 </p>
 
 <p align="center">
